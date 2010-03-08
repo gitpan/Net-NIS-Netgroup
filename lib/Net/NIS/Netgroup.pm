@@ -11,7 +11,7 @@ require DynaLoader;
 our @ISA = qw(Exporter DynaLoader);
 our @EXPORT = qw ( getdomainname setdomainname innetgr );
 
-our $VERSION = "1.0";
+our $VERSION = "1.0.1";
 
 =head1 NAME
 
