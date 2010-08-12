@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 
-use Test::More tests => 6;
+use Test::More tests => 8;
 
 use Net::NIS::Netgroup;
 
@@ -28,8 +28,18 @@ my $user = undef;
 my $domain = undef;
 
 SKIP: {
-	skip 'Net group Users.users not known to exist on this platform', 1 if (! -f '/etc/productversion');
+	#
+	# Modify this "if" clause and the "netgroup" for testing on your
+	# platform/system
+	#
+	skip 'Net group Users.users not known to exist on this platform', 2 if (! -f '/etc/productversion');
 	ok ( innetgr($netgroup, $host, $user, $domain), "undef host/user/domain is \"innetgr\" \"$netgroup\"" );
+
+	ok(scalar(listnetgr($netgroup)) > 0, "Net group \"$netgroup\" has some member(s)");
 }
 $netgroup = 'doesnotexist'; $host = 'nowherehost.local'; $user = 'barf'; $domain = 'surely.not.here.local';
-ok ( !innetgr($netgroup, $host, $user, $domain), "invalid netgroup/host/user/domain are not \"innetgr\"" );
+ok ( !innetgr($netgroup, $host, $user, $domain), 'invalid netgroup/host/user/domain are not "innetgr"');
+
+is(scalar(my @list = listnetgr($netgroup, 1)), 0, 'invalid netgroup/host/user/domain has an empty net group list');
+
+1;

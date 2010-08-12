@@ -15,13 +15,13 @@ To install this module type the following:
    make install
 
 
-You may test the package with "make test"; this will, however, only succeed
-if run as root.
+You may test the package with "make test"; some tests, however, will be skipped
+if not running as root.
 
 Copyright and licence
 =====================
 
-Copyright (C) 2009 Collax GmbH. All rights reserved.
+Copyright (C) 2009, 2010 Collax GmbH. All rights reserved.
 (Bastian Friedrich <bastian.friedrich@collax.com> or <bastian@bastian-friedrich.de>)
 
 This library is free software; you can redistribute it and/or modify
